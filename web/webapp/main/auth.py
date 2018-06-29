@@ -5,7 +5,10 @@ import xmlrpclib
 import requests
 from models import User
 from .. import online
+<<<<<<< HEAD
 from form import InputForm
+=======
+>>>>>>> 9d5b2532604be72831385144fc45a0fcbf2d3cf4
 from flask import current_app, request
 from flask_login import login_required, current_user, login_user
 import json
@@ -13,8 +16,13 @@ import json
 auth = Blueprint("auth", __name__)
 
 
+<<<<<<< HEAD
 @auth.route("/show/<key>", methods=['GET', 'POST'])
 @login_required
+=======
+@login_required
+@auth.route("/show/<key>", methods=['GET', 'POST'])
+>>>>>>> 9d5b2532604be72831385144fc45a0fcbf2d3cf4
 def show_info(key):
     session['key'] = key
     return redirect(url_for('auth.index'))
@@ -27,6 +35,10 @@ def index():
         try:
             rpc_server = xmlrpclib.Server("http://{}".format(current_app.config['RPC_ADDRESS']))
             rpc_info = rpc_server.get_online_protocol()
+<<<<<<< HEAD
+=======
+            print rpc_info
+>>>>>>> 9d5b2532604be72831385144fc45a0fcbf2d3cf4
             for rpc in rpc_info:
                 if rpc and rpc[1]['user_id'] != str(current_user.id):
                     rpc_info.remove(rpc)
@@ -41,7 +53,11 @@ def index():
 def login():
     email = request.args.get('email')
     password = request.args.get('password')
+<<<<<<< HEAD
     url = "https://cherrymonth.top/get_user_info/?email={}&password={}".format(email, password)
+=======
+    url = "http://cherrymonth.top:5000/get_user_info/?email={}&password={}".format(email, password)
+>>>>>>> 9d5b2532604be72831385144fc45a0fcbf2d3cf4
     ret = requests.post(url)
     info = json.loads(ret.text)
     if info != '{}' and info:
@@ -69,12 +85,17 @@ def login():
 def logout():
     if current_user.is_authenticated:
         del online[current_user.id]
+<<<<<<< HEAD
         if session.get('key'):
             del session['key']
+=======
+        del session['key']
+>>>>>>> 9d5b2532604be72831385144fc45a0fcbf2d3cf4
         flash(u"登出成功!", "success")
     else:
         flash(u"您尚未登录,无法注销!", "warning")
     return redirect(url_for("auth.index"))
+<<<<<<< HEAD
 
 
 @auth.route("/node_info/<_node>", methods=['GET', 'POST'])
@@ -116,3 +137,5 @@ def word_cloud():
     except Exception as e:
         flash(str(e), "warning")
     return render_template("word_cloud.html", form=form, work_list=work_list, backend=current_app.config['UI_ADDRESS'])
+=======
+>>>>>>> 9d5b2532604be72831385144fc45a0fcbf2d3cf4

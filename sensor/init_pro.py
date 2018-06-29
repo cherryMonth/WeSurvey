@@ -29,10 +29,13 @@ class ConnectionProtocol(Protocol):
     def __init__(self):
         self.div_name = ""
         self.status = False
+<<<<<<< HEAD
         self.weight = 50
         self.cur_weight = 50
         self.work_num = 0
         self.work = list()
+=======
+>>>>>>> 9d5b2532604be72831385144fc45a0fcbf2d3cf4
 
     def connectionMade(self):
         # 工厂创建的protocol数目增加一个
@@ -58,6 +61,7 @@ class ConnectionProtocol(Protocol):
         try:
             print data
             json_data = json.loads(data)
+<<<<<<< HEAD
             if json_data['status'] == 200:
                 print "success"
             elif json_data['status'] == 404:
@@ -66,6 +70,10 @@ class ConnectionProtocol(Protocol):
                 self.connectionLost('node existed !')
             else:
                 self.connectionLost("some thing error")
+=======
+            if json_data['status'] != 200:
+                self.connectionLost('status code is not 200 !')
+>>>>>>> 9d5b2532604be72831385144fc45a0fcbf2d3cf4
         except Exception as e:
             print e
 

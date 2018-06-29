@@ -29,4 +29,5 @@ class StateRpc(xmlrpc.XMLRPC):
         return [str(temp(key)) for key in online.cache.keys() if key.startswith("node")]
 
 
+
 Rpc = StateRpc()

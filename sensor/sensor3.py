@@ -5,6 +5,7 @@ import sys
 from twisted.internet import reactor
 from twisted.python import log
 import random
+import json
 import datetime
 import json
 
@@ -45,7 +46,11 @@ class CreateConnection(object):
         info["info"] = "null"
         info['type'] = 'mois'
         info['name'] = 'jian'
+<<<<<<< HEAD:sensor/sensor3.py
         info['user_id'] = '10'
+=======
+        info['user_id'] = '1'
+>>>>>>> 9d5b2532604be72831385144fc45a0fcbf2d3cf4:sensor/manage4.py
         return info
 
 

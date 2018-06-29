@@ -39,7 +39,11 @@ class CreateConnection(object):
     def pack_data():
 
         info = dict()
+<<<<<<< HEAD:sensor/sensor1.py
         info["id"] = '3'
+=======
+        info["id"] = '1'
+>>>>>>> 9d5b2532604be72831385144fc45a0fcbf2d3cf4:sensor/manage1.py
         info["entry_time"] = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         info["entry_data"] = random.uniform(-10, 50)
         info["info"] = "null"

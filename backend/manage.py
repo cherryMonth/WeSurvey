@@ -1,7 +1,7 @@
 # coding=utf-8
 
 from twisted.internet import reactor
-from backend.webapp.onlineProtocol import online
+from onlineProtocol import online
 from webapp.factory_protocol.protocol.sensorprotocol import SensorProtocol
 from webapp.factory_protocol.factory.sensorfactory import SensorFactory
 from webapp.factory_protocol.protocol.SendUi import SendUiProtocol

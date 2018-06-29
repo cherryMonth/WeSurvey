@@ -61,7 +61,6 @@ class SensorProtocol(Protocol):
                 for observe in self.factory.OnlineProtocol.observe.get(self.name):  # 观察者模式　发送给所有关注该结点的sockjs
                     observe.transport.write(json.dumps(temp))
                 self.transport.write(json.dumps({"status": 200}))
-
         except Exception as e:
             self.transport.write(json.dumps({"status": 500}))
             self.connectionLost()

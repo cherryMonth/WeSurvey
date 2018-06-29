@@ -4,6 +4,10 @@
 
 
 var host = document.getElementById("backend").value;
+<<<<<<< HEAD
+=======
+console.log(host, name);
+>>>>>>> 9d5b2532604be72831385144fc45a0fcbf2d3cf4
 
 type_list = {'temp': '温度', 'mois': '湿度'};
 
@@ -63,6 +67,10 @@ function insertTable(tbody_id, info_list) {
 
 sock.onmessage = function (e) {
     var parse_info = JSON.parse(e.data);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9d5b2532604be72831385144fc45a0fcbf2d3cf4
     if (parse_info instanceof Array) {
         chart = Highcharts.chart('container', {
             chart: {
@@ -128,6 +136,10 @@ sock.onmessage = function (e) {
 };
 
 sock.onclose = function () {
+<<<<<<< HEAD
     console.log('close');
+=======
+    console.log('close')
+>>>>>>> 9d5b2532604be72831385144fc45a0fcbf2d3cf4
 };
 

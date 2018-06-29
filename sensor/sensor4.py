@@ -7,6 +7,7 @@ from twisted.python import log
 import random
 import json
 import datetime
+import json
 
 log.startLogging(sys.stdout)
 
@@ -39,13 +40,17 @@ class CreateConnection(object):
     def pack_data():
 
         info = dict()
-        info["id"] = '4'
+        info["id"] = '3'
         info["entry_time"] = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         info["entry_data"] = random.uniform(-10, 50)
         info["info"] = "null"
         info['type'] = 'temp'
         info['name'] = 'jian'
+<<<<<<< HEAD:sensor/sensor4.py
         info['user_id'] = '2'
+=======
+        info['user_id'] = '1'
+>>>>>>> 9d5b2532604be72831385144fc45a0fcbf2d3cf4:sensor/manage3.py
         return info
 
 
