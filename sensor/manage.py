@@ -6,6 +6,7 @@ from twisted.internet import reactor
 from twisted.python import log
 import random
 import datetime
+import json
 
 log.startLogging(sys.stdout)
 
@@ -29,7 +30,7 @@ class CreateConnection(object):
             print u"正在重连........................"
 
         else:
-            Connector.get_online_protocol('ConnectionPlatform')[0].transport.write(self.pack_data())
+            Connector.get_online_protocol('ConnectionPlatform')[0].transport.write(json.dumps(self.pack_data()))
             print u"已发送采集的到的数据....................."
 
         reactor.callLater(1, self.create_long_connection)           # 一直尝试在连接
@@ -40,13 +41,13 @@ class CreateConnection(object):
         info = dict()
         info["id"] = '1'
         info["entry_time"] = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        info["entry_data"] = random.random()
+        info["entry_data"] = random.uniform(-10, 50)
         info["info"] = "null"
         info['type'] = 'temp'
         info['name'] = 'songjian'
-        return str(info).replace("'", '"')
+        return info
 
 
-create_connection = CreateConnection('127.0.0.1', 5002)
+create_connection = CreateConnection('120.78.144.47', 5002)
 create_connection.create_long_connection()
 reactor.run()

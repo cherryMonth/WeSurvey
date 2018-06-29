@@ -2,7 +2,6 @@
 
 import json
 from twisted.internet.protocol import Protocol
-from backend.db_manager.db_operation import db
 
 num = 0
 
@@ -30,7 +29,7 @@ class SensorProtocol(Protocol):
             if len(self.factory.OnlineProtocol.cache.get(self.name)) == self.factory.OnlineProtocol.length:
                 self.factory.OnlineProtocol.cache.get(self.name).pop(0)
             temp = json.loads(data)
+            print temp
             self.factory.OnlineProtocol.cache.get(self.name).append(temp)
-            db.execute_insert('sensor', temp.keys(), [temp[key] for key in temp.keys()])
         except Exception as e:
             print e

@@ -1,11 +1,10 @@
 # coding=utf-8
-from twisted.web import xmlrpc, server
 
 
 import xmlrpclib
 
-s = xmlrpclib.Server("http://localhost:5003")
+s = xmlrpclib.Server("http://localhost:5007")
 
-temp = s.get_online_protocol()
-print len(temp['3'])
-print temp['3'][0]
+data = {"user_id": 1, 'url': "www.baidu.com", "num": 10, "dispersion": 5, "type": True, "func": ""}
+
+print s.kill_task("1")

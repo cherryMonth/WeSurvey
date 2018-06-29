@@ -7,7 +7,6 @@ from twisted.python import log
 import random
 import datetime
 
-
 log.startLogging(sys.stdout)
 
 
@@ -31,20 +30,16 @@ class CreateConnection(object):
 
         else:
             Connector.get_online_protocol('ConnectionPlatform')[0].transport.write(self.pack_data())
-            print u"已发送采集的到的数据....................."
-
+            print u"已发送采集的到的数据 ....................."
         reactor.callLater(1, self.create_long_connection)           # 一直尝试在连接
 
     @staticmethod
     def pack_data():
 
         info = dict()
-        info["id"] = '3'
+        info["id"] = '2'
         info["entry_time"] = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        info["entry_data"] = random.random()
-        info["info"] = "null"
-        info['type'] = 'temp'
-        info['name'] = 'month'
+        info['data'] = random.random()
         return str(info).replace("'", '"')
 
 

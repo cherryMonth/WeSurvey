@@ -2,6 +2,7 @@
 
 from twisted.internet.protocol import ClientFactory, Protocol
 import re
+import json
 
 
 class ConnectionFactory(ClientFactory):
@@ -27,6 +28,11 @@ class ConnectionProtocol(Protocol):
 
     def __init__(self):
         self.div_name = ""
+        self.status = False
+        self.weight = 50
+        self.cur_weight = 50
+        self.work_num = 0
+        self.work = list()
 
     def connectionMade(self):
         # 工厂创建的protocol数目增加一个
@@ -35,17 +41,31 @@ class ConnectionProtocol(Protocol):
         self.div_name = 'ConnectionPlatform'
         print "Connection successful, the current number of ConnectionPlatform is " + str(self.factory.numProtocols)
         self.factory.onlineProtocol.add_client(self.div_name, self)  # 添加到在线列表里
+        self.status = True
 
     def connectionLost(self, reason=""):
         # 连接丢失，删除实例
-        print "The reason of ConnectionPlatform lost is " + str(reason) + "\n"
-        self.factory.numProtocols -= 1
-        print "the current number of ConnectionPlatform is " + str(self.factory.numProtocols) + "\n"
-        self.factory.onlineProtocol.del_client(self.div_name)
+        if self.status:
+            print "The reason of ConnectionPlatform lost is " + str(reason) + "\n"
+            self.factory.numProtocols -= 1
+            print "the current number of ConnectionPlatform is " + str(self.factory.numProtocols) + "\n"
+            self.factory.onlineProtocol.del_client(self.div_name)
+            self.status = False
+        else:
+            pass
 
     def dataReceived(self, data):
         try:
-            self.transport.write(data)
+            print data
+            json_data = json.loads(data)
+            if json_data['status'] == 200:
+                print "success"
+            elif json_data['status'] == 404:
+                print 'not find'
+            elif json_data['status'] == 403:
+                self.connectionLost('node existed !')
+            else:
+                self.connectionLost("some thing error")
         except Exception as e:
             print e
 

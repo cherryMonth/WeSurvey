@@ -10,4 +10,9 @@
 
 # 通过WebSocket 在Web界面上显示
 
-## 数据
+## 支持 MYSQL 和 HBASE
+
+[架构文档](http://cherrymonth.top:5000/display/96)
+
+## 添加了用户block1b
+## 
