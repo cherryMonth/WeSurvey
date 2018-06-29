@@ -2,7 +2,7 @@
 
 import json
 from twisted.internet.protocol import Protocol
-from ..db_manager.db_operation import db
+#from ..db_manager.db_operation import db
 
 num = 0
 
